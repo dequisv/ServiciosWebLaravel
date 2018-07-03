@@ -75,7 +75,7 @@ protected function get($url)
     return json_decode($response->getBody()->getContents());
 }
 ```
-[Acceder al codigo completo de la clase GuzzleHttpRequestUtilidades.php](/app/Utilidades/GuzzleHttpRequestUtilidades.php)
+[Acceder al codigo completo de la clase GuzzleHttpRequestUtilidades.php](app/Utilidades/GuzzleHttpRequestUtilidades.php)
 
 
 Adicional a esto, tambien se ha definido la clase PersonasGuzzleUtilidades.php que hereda de GuzzleHttpRequestUtilidades.php que es la interfaz que se accede desde  ConsumoPersonasController.php 
@@ -85,7 +85,7 @@ public function all()
     return $this->get('personas');
 }
 ```
-[Acceder al codigo completo de interfaz](/app/Utilidades/PersonasGuzzleUtilidades.php)
+[Acceder al codigo completo de interfaz](app/Utilidades/PersonasGuzzleUtilidades.php)
 
 Una vez se han obtenido los datos, se envían a una vista para ser representada a los usuarios. 
 ``` php
@@ -95,7 +95,7 @@ public function index()
     return view('personas.index', compact('datos'));
 }
 ```
-[Acceder al codigo completo de controlador](/app/Http/Controllers/ConsumoPersonasController.php)
+[Acceder al codigo completo de controlador](app/Http/Controllers/ConsumoPersonasController.php)
 
 El servicio web devuelve un json con la siguiente estructura
 ``` json
