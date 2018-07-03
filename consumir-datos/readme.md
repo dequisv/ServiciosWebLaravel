@@ -53,7 +53,7 @@ El siguiente caso, se tiene un sistema con formularios web los cuales realizan l
   <img src="../docs/img/1.png" title="solicitud de servicio web desde formularios">
 </p>
 
-#### Route
+#### * Route
 El usuario realiza las operaciones de mantenimiento desde los formularios web, dependiendo de la operación realizada por el usuario la configuración interna de Laravel accede la configuración de rutas (routes.php), según la ruta definida se llama a la función definida en el controlador (ConsumoPersonasController.php) el cual realiza una instancia del cliente Guzzle para acceder a servicios remotos a través de HTTP. 
 
 ``` php
@@ -68,7 +68,7 @@ Route::post('consumopersonas/{id}/eliminar', 'ConsumoPersonasController@destroy'
 Route::get('departamentos', 'DepartamentosController@index');
 ```
 
-#### Guzzle
+#### * Guzzle
 En este ejemplo y para dejar una configuración más funcional para acceder a múltiples recursos se ha definido una clase global para la creación del cliente Guzzle (GuzzleHttpRequestUtilidades.php), dicha clase se inicializa con la construcción de un nuevo cliente a quien se le asigna la URI de los recursos a acceder.
 
 ``` php
@@ -100,7 +100,7 @@ public function all()
 ```
 [Acceder al codigo completo de interfaz](app/Utilidades/PersonasGuzzleUtilidades.php)
 
-#### Controller
+#### * Controller
 Una vez se han obtenido los datos, se envían a una [vista](#view) para ser representada a los usuarios. 
 ``` php
 public function index()
@@ -111,7 +111,7 @@ public function index()
 ```
 [Acceder al codigo completo de controlador](app/Http/Controllers/ConsumoPersonasController.php)
 
-#### View
+#### * View
 Según la [estructura de respuesta](#estructura-de-respuesta) los datos de interes(Personas) están dentro de un arreglo llamado datos, para mostrar dicho resultado en una tabla con html se puede usar el siguiente código:
 ``` php
 @foreach($datos as $dato)
@@ -133,7 +133,7 @@ Según la [estructura de respuesta](#estructura-de-respuesta) los datos de inter
 ```
 [Acceder al codigo completo de la vista personas.index](resources/views/personas/index.blade.php)
 
-#### Estructura de respuesta
+#### * Estructura de respuesta
 El servicio web devuelve un json con la siguiente estructura
 ``` json
 {
