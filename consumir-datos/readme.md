@@ -21,6 +21,13 @@ Como primer caso, se puede acceder a servicios web sin necesidad de mostrar los 
   <img src="../docs/img/2.png" title="servicio de consulta">
 </p>
 
+### Route
+``` php
+Route::get('departamentos', 'DepartamentosController@index');
+```
+[Acceder al codigo de route](app/Http/routes.php)
+
+### Controller implementando Guzzle
 Este ejemplo por ser un caso simple, se codificará toda la estructura de llamada a servicio web con Guzzle desde el archivo de controlador (DepartamentosController.php) al final los datos obtenidos son enviados a una vista.
 ``` php
 public function index()
@@ -69,8 +76,8 @@ Route::get('consumopersonas/{id}', 'ConsumoPersonasController@show');
 Route::get('consumopersonas/{id}/editar', 'ConsumoPersonasController@edit');
 Route::post('consumopersonas/{id}/editar', 'ConsumoPersonasController@update');
 Route::post('consumopersonas/{id}/eliminar', 'ConsumoPersonasController@destroy');
-Route::get('departamentos', 'DepartamentosController@index');
 ```
+[Acceder al codigo de route](app/Http/routes.php)
 
 ### Guzzle
 En este ejemplo y para dejar una configuración más funcional para acceder a múltiples recursos se ha definido una clase global para la creación del cliente Guzzle (GuzzleHttpRequestUtilidades.php), dicha clase se inicializa con la construcción de un nuevo cliente a quien se le asigna la URI de los recursos a acceder.
