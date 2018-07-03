@@ -1,7 +1,7 @@
 # Consumo de Servicios Web RESTful con Laravel
 En esta sección se documenta la forma de consumir datos a través de servicios web RESTful con Laravel.
 
-Es posible contar con API's públicas como la del [Ministerio de Salud](#https://api.salud.gob.sv/), en donde es posible realizar consulta sobre los principales catálogos que se utilizan en el servicio de CUN o registro de nacimientos. Al mismo tiempo es posible consultar otros catálogos de común interés para las demás instituciones como:
+Es posible contar con API's públicas como la del [Ministerio de Salud](https://api.salud.gob.sv/), en donde es posible realizar consulta sobre los principales catálogos que se utilizan en el servicio de CUN o registro de nacimientos. Al mismo tiempo es posible consultar otros catálogos de común interés para las demás instituciones como:
 
 * Departamento
 * Municipio
@@ -68,14 +68,16 @@ public function __construct()
 ```
 
 En la misma clase se define método para poder obtener los datos de los servicios remotos.
-``` php
+```
 protected function get($url)
 {
     $response = $this->client->request('GET', $url);
     return json_decode($response->getBody()->getContents());
 }
-```
+
 [Acceder al codigo completo de la clase GuzzleHttpRequestUtilidades.php](app/Utilidades/GuzzleHttpRequestUtilidades.php)
+
+```
 
 
 Adicional a esto, tambien se ha definido la clase PersonasGuzzleUtilidades.php que hereda de GuzzleHttpRequestUtilidades.php que es la interfaz que se accede desde  ConsumoPersonasController.php 
