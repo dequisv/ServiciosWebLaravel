@@ -7,14 +7,14 @@ Es posible contar con API's públicas como la del [Ministerio de Salud](https://
 * Municipio
 * Pais
 
-## Escenarios de consulta
+# Escenarios de consulta
 Para poder consumir datos de un servicio web con Laravel, es importante tener en cuenta las clases necesarias para hacer una llamada de servicio a través del protocolo HTTP.
 
 Para php, así como para la mayoría de lenguajes de programación existen diversas librerías que facilitan el uso y consumo de servicios web RESTful, en esta guía se utilizará [Guzzle](#https://github.com/guzzle/guzzle).
 
 Implementando Guzzle como librería que facilita la creación de cliente HTTP, se debe tomar en cuenta que otras clases se ocupar para el consumo de servicios web. 
 
-### Consulta de servicios web
+## Consulta de servicios web
 Como primer caso, se puede acceder a servicios web sin necesidad de mostrar los datos en una vista o formulario de iteración con usuarios, este caso en particular se puede ocupar para aquellas rutinas automáticas donde se necesita consultar servicios de otras instituciones para ser procesada en servicios internos o almacenarlos en base de datos locales.
 
 <p align="center">
@@ -40,20 +40,24 @@ public function index()
     return view('departamentos.index', compact('departamentos'));
 }
 ```
+[Acceder al codigo de controlador](app/Http/Controllers/DepartamentosController.php)
+
+[Acceder al codigo de vista](resources/views/departamentos/index.blade.php)
+
 Si el objetivo fuera guardar $departamentos en una tabla usando el ORM Eloquent deberíamos tener una instrucción como la siguiente.
 
 ``` php
 Departamento::create($departamentos->all());
 ```
 
-### Consulta de servicios web desde formularios
+## Consulta de servicios web desde formularios
 El siguiente caso, se tiene un sistema con formularios web los cuales realizan llamadas a datos remotos a través de servicios web.
 
 <p align="center">
   <img src="../docs/img/1.png" title="solicitud de servicio web desde formularios">
 </p>
 
-#### * Route
+### Route
 El usuario realiza las operaciones de mantenimiento desde los formularios web, dependiendo de la operación realizada por el usuario la configuración interna de Laravel accede la configuración de rutas (routes.php), según la ruta definida se llama a la función definida en el controlador (ConsumoPersonasController.php) el cual realiza una instancia del cliente Guzzle para acceder a servicios remotos a través de HTTP. 
 
 ``` php
@@ -68,7 +72,7 @@ Route::post('consumopersonas/{id}/eliminar', 'ConsumoPersonasController@destroy'
 Route::get('departamentos', 'DepartamentosController@index');
 ```
 
-#### * Guzzle
+### Guzzle
 En este ejemplo y para dejar una configuración más funcional para acceder a múltiples recursos se ha definido una clase global para la creación del cliente Guzzle (GuzzleHttpRequestUtilidades.php), dicha clase se inicializa con la construcción de un nuevo cliente a quien se le asigna la URI de los recursos a acceder.
 
 ``` php
@@ -100,7 +104,7 @@ public function all()
 ```
 [Acceder al codigo completo de interfaz](app/Utilidades/PersonasGuzzleUtilidades.php)
 
-#### * Controller
+### Controller
 Una vez se han obtenido los datos, se envían a una [vista](#view) para ser representada a los usuarios. 
 ``` php
 public function index()
@@ -111,7 +115,7 @@ public function index()
 ```
 [Acceder al codigo completo de controlador](app/Http/Controllers/ConsumoPersonasController.php)
 
-#### * View
+### View
 Según la [estructura de respuesta](#estructura-de-respuesta) los datos de interes(Personas) están dentro de un arreglo llamado datos, para mostrar dicho resultado en una tabla con html se puede usar el siguiente código:
 ``` php
 @foreach($datos as $dato)
@@ -133,7 +137,7 @@ Según la [estructura de respuesta](#estructura-de-respuesta) los datos de inter
 ```
 [Acceder al codigo completo de la vista personas.index](resources/views/personas/index.blade.php)
 
-#### * Estructura de respuesta
+### Estructura de respuesta
 El servicio web devuelve un json con la siguiente estructura
 ``` json
 {
