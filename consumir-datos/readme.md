@@ -139,4 +139,4 @@ Según la estructura de respuesta los datos de interes(Personas) están dentro d
 @endforeach
 
 ```
-[Acceder al codigo completo de la vista personas.index](/resources/views/personas/index.blade.php)
+[Acceder al codigo completo de la vista personas.index](resources/views/personas/index.blade.php)
