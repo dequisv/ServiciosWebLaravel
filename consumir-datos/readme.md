@@ -24,22 +24,21 @@ Como primer caso, se puede acceder a servicios web sin necesidad de mostrar los 
 Este ejemplo por ser un caso simple, se codificará toda la estructura de llamada a servicio web con Guzzle desde el archivo de controlador (DepartamentosController.php) al final los datos obtenidos son enviados a una vista.
 ``` php
 public function index()
-    {
-        $client = new Client([
+{
+    $client = new Client([
             'base_uri' => 'https://api.salud.gob.sv/',
             'timeout'  => 2.0
         ]);
-        $response = $client->request('GET', 'departamentos',
+    $response = $client->request('GET', 'departamentos',
             [
                 'headers' => [
                     'Accept'     => 'application/json'
                 ]
             ]
         );
-        $departamentos = json_decode($response->getBody()->getContents());
-        
-  return view('departamentos.index', compact('departamentos'));
-    }
+    $departamentos = json_decode($response->getBody()->getContents());
+    return view('departamentos.index', compact('departamentos'));
+}
 ```
 Si el objetivo fuera guardar $departamentos en una tabla usando el ORM Eloquent deberíamos tener una instrucción como la siguiente.
 
@@ -60,61 +59,68 @@ En este ejemplo y para dejar una configuración más funcional para acceder a m�
 
 ``` php
 public function __construct()
-    {
-        $this->client = new Client([
-            'base_uri' => 'http://localhost:81/proveer-datos/public/',
-            'timeout'  => 2.0
-        ]);
-    }
+{
+    $this->client = new Client([
+        'base_uri' => 'http://localhost:81/proveer-datos/public/',
+        'timeout'  => 2.0
+    ]);
+}
 ```
 
 En la misma clase se define método para poder obtener los datos de los servicios remotos.
 ``` php
 protected function get($url)
-    {
-        $response = $this->client->request('GET', $url);
-        return json_decode($response->getBody()->getContents());
-    }
-
+{
+    $response = $this->client->request('GET', $url);
+    return json_decode($response->getBody()->getContents());
+}
 ```
+[Acceder al codigo completo de la clase GuzzleHttpRequestUtilidades.php](/app/Utilidades/GuzzleHttpRequestUtilidades.php)
 
->En las secciones inferiores se documenta la clase PersonasGuzzleUtilidades.php que conecta ConsumoPersonasController.php con GuzzleHttpRequestUtilidades.php
+
+Adicional a esto, tambien se ha definido la clase PersonasGuzzleUtilidades.php que hereda de GuzzleHttpRequestUtilidades.php que es la interfaz que se accede desde  ConsumoPersonasController.php 
+``` php
+public function all()
+{
+    return $this->get('personas');
+}
+```
+[Acceder al codigo completo de interfaz](/app/Utilidades/PersonasGuzzleUtilidades.php)
 
 Una vez se han obtenido los datos, se envían a una vista para ser representada a los usuarios. 
-
 ``` php
 public function index()
-    {
-        $datos = $this->personas->all();
-        return view('personas.index', compact('datos'));
-    }
-
+{
+    $datos = $this->personas->all();
+    return view('personas.index', compact('datos'));
+}
 ```
+[Acceder al codigo completo de controlador](/app/Http/Controllers/ConsumoPersonasController.php)
 
 El servicio web devuelve un json con la siguiente estructura
 ``` json
 {
-"datos": [
-{
-"id": 1,
-"dui": "412786227",
-"nombre": "Joaquin",
-"apellido": "Heidenreich",
-"fechaNacimiento": "2014-11-02"
-},
-{
-"id": 2,
-"dui": "935619249",
-"nombre": "Kris",
-"apellido": "Bartoletti",
-"fechaNacimiento": "1972-04-17"
-}
-…
-]
+    "datos": [
+                {
+                    "id": 1,
+                    "dui": "412786227",
+                    "nombre": "Joaquin",
+                    "apellido": "Heidenreich",
+                    "fechaNacimiento": "2014-11-02"
+                },
+                {
+                    "id": 2,
+                    "dui": "935619249",
+                    "nombre": "Kris",
+                    "apellido": "Bartoletti",
+                    "fechaNacimiento": "1972-04-17"
+                }
+                …
+            ]
 }
 ```
 
-Según la estructura de respuesta los datos de interesa(Personas) están dentro de un arreglo llamado datos, para mostrar dicho resultado en una tabla con html se puede usar el siguiente código:
+Según la estructura de respuesta los datos de interes(Personas) están dentro de un arreglo llamado datos, para mostrar dicho resultado en una tabla con html se puede usar el siguiente código:
 ``` php
 @foreach($datos as $dato)
     @foreach($dato as $persona)
@@ -133,4 +139,4 @@ Según la estructura de respuesta los datos de interesa(Personas) están dentro 
 @endforeach
 
 ```
-
+[Acceder al codigo completo de la vista personas.index](/resources/views/personas/index.blade.php)
