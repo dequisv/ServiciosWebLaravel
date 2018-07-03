@@ -1,0 +1,4 @@
+composer sear faker
+composer require fzaninotto/faker --dev
+composer dump-autoload
+php artisan db:seed
