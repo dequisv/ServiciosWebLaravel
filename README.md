@@ -57,6 +57,7 @@ Para garantizar el funcionamiento despues de realizar cambios, puede preparar el
 
 ## Estandarización URI
 Uno de los principios de los servicios web RESTful es contar con la [estandarización de URI](https://github.com/egobsv/EstandaresInteroperabilidad/blob/master/Desarrollo.md#buenas-pr%C3%A1cticas-1) que permiten el acceso unificado a los recursos.
+
 | Verbo |	URI |	Acción | Ruta |
 | ----- |	----- |	----- | ----- |
 | GET |	/personas |	index |	personas.index |
@@ -69,8 +70,6 @@ Uno de los principios de los servicios web RESTful es contar con la [estandariza
 
 ## Referencias
 [Estandares de interoperabilidad de gobierno de El Salvador](https://github.com/egobsv/EstandaresInteroperabilidad)
-
-[Libreria Faker](https://github.com/fzaninotto/Faker#fakerprovideren_usperson) para creación de data.
 
 ## Licencia
 Este trabajo esta cubierto dentro de la estrategia de desarrollo de servicios de Gobierno Electrónico del Gobierno de El Salvador y como tal es una obra de valor público sujeto a los lineamientos de la Política de Datos Abiertos y la licencia [CC-BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.es).
