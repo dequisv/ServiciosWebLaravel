@@ -16,9 +16,8 @@ Implementando Guzzle como librería que facilita la creación de cliente HTTP, s
 Como primer caso se puede tener una app que solo consulte a un servicio para poblar una base de datos, bajo este escenario solamente bastaria con tener un controlador que se encargaria de hacer la llamada al servicio web y luego poblar la tabla especifica(cualquier otra operación que se requiera).
 
 <p align="center">
-  <img src="../docs/img/2.png" title="Servicio de consulta">
+  <img src="../docs/img/2.png" title="servicio de consulta">
 </p>
-![Alt text](../docs/img/2.png?raw=true "Servicio de consulta")
 
 Como segundo caso, se puede tener un formulario web en el cual los usuario iteractuan con las diversas funciones de los servicios web.
 
