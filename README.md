@@ -80,6 +80,18 @@ Uno de los principios de los servicios web RESTful es contar con la [estandariza
 | PUT/PATCH |	/personas/{personas} | update | personas.update |
 | DELETE | /personas/{personas} |	destroy	| personas.destroy |
 
+## Seguridad de Servicios Web
+Al momento de hablar de la seguridad en servicios web, existen dos escenarios para garantizar que solo las entidades que cuenten permiso puedan acceder a dichos servicios:
+* Autenticación de cliente con certificado
+* Autenticación mutua
+
+En ambos casos la comunicación se realiza a través de HTTPS(SSL/TLS)
+
+En este apartado se detalla como habilitar SSL y requerir un cliente con certificado digital para dar acceso a consulta de servicios web. [Instrucciones](/proveer-datos/seguridad.md).
+
+Cuando el escenario es que nuestra institución requiere consumir datos de una fuente externa autenticandose con certificado digital puede seguir las siguientes [Instrucciones](/consumir-datos/seguridad.md).
+
+
 ## Referencias
 
 [Estandares de interoperabilidad de gobierno de El Salvador](https://github.com/egobsv/EstandaresInteroperabilidad)
